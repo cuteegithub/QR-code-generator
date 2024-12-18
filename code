@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- QR Code Library -->
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <label for="qrText">Enter text to generate QR code:</label><br><br>
+    <input type="text" id="qrText" placeholder="Type text or URL here" style="width: 300px;"><br><br>
+    <button onclick="generateQRCode()">Generate QR Code</button><br><br>
+
+    <!-- Div where the QR Code will appear -->
+    <div id="qrcode"></div>
+
+    <script>
+        // Function to generate QR Code
+        function generateQRCode() {
+            const qrText = document.getElementById("qrText").value; // Get text from input field
+            
+            if (qrText.trim() !== "") { // Check if the input is not empty
+                // Generate QR code and render it inside the 'qrcode' div
+                QRCode.toCanvas(document.getElementById('qrcode'), qrText, function (error) {
+                    if (error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                alert("Please enter some text to generate the QR code.");
+            }
+        }
+    </script>
+</body>
+</html>
